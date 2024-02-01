@@ -1,5 +1,14 @@
 version: "3.3"
 services:
+    starrocks:
+      image: starrocks/allin1-ubuntu
+      hostname: starrocks-fe
+      container_name: allin1-ubuntu
+      ports:
+        - 8030:8030
+        - 8040:8040
+        - 9030:9030
+
     postgres:
       image: postgres:13
       environment:
@@ -23,6 +32,7 @@ services:
       container_name: postgres-database
 
     hive-metastore:
+      platform: linux/amd64
       image: michaelmt66/hive-metastore:3.1.2
       depends_on:
         - postgres
